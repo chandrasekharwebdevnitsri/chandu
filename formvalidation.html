@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">;
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="formvalidation.css"
+    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Registration Form</h2>
+            
+            <div><i style="font-size:24px" class="fa">&#xf2bd;</i>
+            </div>
+            
+
+        </div>
+            <form action="" class="main-form" onsubmit="return myfun()">
+                <div class="form">
+                    <label for="">username</label>
+                    <input type="text" placeholder="Enter your name" id="username" autocomplete="off">
+                    <i class="fa sucess">&#xf058;</i>
+                    <i class="fa error">&#xf06a;</i>
+                    <small class="message">error message</small>
+                       </div>
+                       <div class="form">
+                        <label for="">Email</label>
+                        <input type="email" placeholder="Enter your valid email" id="email" autocomplete="off">
+                        <i class="fa sucess">&#xf058;</i>
+                        <i class="fa error">&#xf06a;</i>
+                        <small class="message">error message</small>
+                           </div>
+                           <div class="form">
+                            <label for="">Password</label>
+                            <input type="password" placeholder="Enter  your password" id="password1" autocomplete="off">
+                            <i class="fa sucess">&#xf058;</i>
+                            <i class="fa error">&#xf06a;</i>
+                            <small class="message">error message</small>
+                               </div>
+                               <div class="form">
+                                <label for="">Password check</label>
+                                <input type="password" placeholder="plesase re-enter your password" id="Password2" autocomplete="off">
+                                <i class="fa sucess">&#xf058;</i>
+                                <i class="fa error">&#xf06a;</i>
+                                <small class="message">error message</small>
+                                   </div>
+                                   <button>submitt</button>
+                
+            </form>
+        </div>
+    
+    
+    <script>
+        function myfun(){
+            const username=document.getElementById('username');
+            const email=document.getElementById('email');
+            const password1=document.getElementById('password1');
+            const password2=document.getElementById('password2');
+            const message=document.getElementsByClassName('message');
+            const icon=document.querySelector('i');
+            const sucess=document.getElementsByClassName('sucess');
+            const error=document.getElementsByClassName('error');
+            //submitt sucess variable//
+            let u=0;
+            let e=0;
+            let p1=0;
+            let p2=0;
+
+              //validation for user name//
+              if(username.value==""){
+                  username.style.borderColor='red';
+                  message[0].style.visibility='visible';
+                  message[0].style.color='red';
+                  message[0].innerText="username cant be blank";
+                  error[0].style.visibilty='visible';
+                  error[0].style.color='red';
+                  u=0;
+              }
+              else if(username.value.length<3 && username.value.length>0){
+                username.style.borderColor='red';
+                  message[0].style.visibility='visible';
+                  message[0].style.color='red';
+                  message[0].innerText="username have atleat 3 characters";
+                  error[0].style.visibilty='visible';
+                  error[0].style.color='red';
+                  u=0;
+    
+              }
+              else if(username.value.length>3 &&(isNaN(parseFloat(username.value)))){
+                  username.style.borderColor='green';
+                  error[0].style.visibility='hidden';
+                  message[0].style.visibilty='hidden';
+                  sucess[0].style.visibilty='visible';
+                  sucess[0].style.color='green';
+                  u=1;
+              }
+              else{
+                username.style.borderColor='red';
+                  message[0].style.visibility='visible';
+                  message[0].style.color='red';
+                  message[0].innerText="numbers is not allowed at begging";
+                  error[0].style.visibilty='visible';
+                  error[0].style.color='red';
+                  u=0;
+    
+
+              }
+              //email validation//
+              if(email.value==""){
+                email.style.borderColor='red';
+                  message[1].style.visibility='visible';
+                  message[1].style.color='red';
+                  message[1].innerText="email cant blank";
+                  error[1].style.visibilty='visible';
+                  error[1].style.color='red';
+                  e=0;
+    
+
+              }
+              else if(email.value.indexOf('@')<3 || email.value.lastIndexof('.')>=email.value.length-2){
+                email.style.borderColor='red';
+                  message[1].style.visibility='visible';
+                  message[1].style.color='red';
+                  message[1].innerText='invalid email';
+                  error[1].style.visibilty='visible';
+                  error[1].style.color='red';
+                  e=0;
+    
+              }
+              else{
+                email.style.borderColor='green';
+                  error[1].style.visibility='hidden';
+                  message[1].style.visibilty='hidden';
+                  sucess[1].style.visibilty='visible';
+                  sucess[1].style.color='green';
+                  e=1;
+              }
+              //validation of password//
+              var numbers=/[0-9]/g;
+              if(password1.value==""){
+                password1.style.borderColor='red';
+                  message[2].style.visibility='visible';
+                  message[2].style.color='red';
+                  message[2].innerText="password cant blank";
+                  error[2].style.visibilty='visible';
+                  error[2].style.color='red';
+                  p1=0;
+    
+
+              }
+              else if(password1.value.length<9){
+                password1.style.borderColor='red';
+                  message[2].style.visibility='visible';
+                  message[2].style.color='red';
+                  message[2].innerText="password must be minimum with 8 charcterists";
+                  error[2].style.visibilty='visible';
+                  error[2].style.color='red';
+                  p1=0;
+    
+
+              }
+              else if(!(passowrd.value.match(numbers))){
+                password1.style.borderColor='red';
+                  message[2].style.visibility='visible';
+                  message[2].style.color='red';
+                  message[2].innerText="password have atleast a number";
+                  error[2].style.visibilty='visible';
+                  error[2].style.color='red';
+                  p1=0;
+
+              }
+              else{
+                password1.style.borderColor='green';
+                  error[2].style.visibility='hidden';
+                  message[2].style.visibilty='hidden';
+                  sucess[2].style.visibilty='visible';
+                  sucess[2].style.color='green';
+                 p1=1;
+              }
+              //password check//
+              if(password2.value==""){
+                password2.style.borderColor='red';
+                  message[3].style.visibility='visible';
+                  message[3].style.color='red';
+                  message[3].innerText="password cant blank";
+                  error[3].style.visibilty='visible';
+                  error[3].style.color='red';
+                  p2=0;
+
+              }
+              else if(password1.value!=password2.value){
+                password2.style.borderColor='red';
+                  message[3].style.visibility='visible';
+                  message[3].style.color='red';
+                  message[3].innerText="password not match";
+                  error[3].style.visibilty='visible';
+                  error[3].style.color='red';
+                  p2=0;
+
+              }
+              else{
+                password2.style.borderColor='green';
+                  error[3].style.visibility='hidden';
+                  message[3].style.visibilty='hidden';
+                  sucess[3].style.visibilty='visible';
+                  sucess[3].style.color='green';
+                  p2=1;
+              }
+              if(u==1&&e==1&&p1==1&&p2==1){
+                  return true;
+              }
+               else{
+              return false;
+        }
+      }
+    </script>
+    
+</body>
+</html>
